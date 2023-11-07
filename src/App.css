@@ -9,6 +9,12 @@ body {
   margin: 10% 30%;
 }
 
+.dashboards-header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
 .card-container {
   margin-bottom: 10px;
 }
@@ -25,3 +31,31 @@ body {
   cursor: pointer
 }
 
+.expanded-card {
+  padding: 10px;
+}
+
+.dashboard-item-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dashboard-item-text {
+  text-align: start;
+  margin-left: 10px;
+  color: #212934;
+}
+
+.material-icons {
+  color: #4A5768;
+}
+
+.star-icon {
+  color: #A0ADBA;
+  margin-right: 10px;
+}
+
+hr {
+  border-top: #A0ADBA;
+}
