@@ -1,24 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function App() {
+import { DashboardListItem } from './types/apiData'
+import { getDashboardList, getDashboardItemDetails } from './api/getData';
+
+import DashboardCard from "./components/DashboardCard"
+
+
+const App: React.FC<{}> = () => {
+
+  const [dashboardList, setDashboardList] = useState<DashboardListItem[] | null>(null)
+
+  const handleFetchList = async() => {
+    const res = await getDashboardList()
+    if(Array.isArray(res)) {
+      setDashboardList(res)
+    }
+  }
+
+  const handleFetchAllDetails = async() => {
+    if (dashboardList) {
+      const responses = await Promise.all(
+        dashboardList.map(async item => {
+        const res = await getDashboardItemDetails(item.id)
+        /* @ts-ignore */
+        setExpandedDetailsList(prevItems => [...prevItems, res]);
+        })
+      );
+    }
+  }
+
+  useEffect(() => {
+    handleFetchList()
+  }, [])
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="cards-area">
+        {dashboardList && dashboardList.map(item => (
+          <DashboardCard
+            itemInfo={item} 
+            key={item.id}/>
+        ))}
+      </div>
     </div>
   );
 }
