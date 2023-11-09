@@ -6,11 +6,11 @@ export interface DashboardListItem {
 
 export interface FullItemInfo {
   access: Access;
-  allowedFilters: [];
+  allowedFilters?: [];
   dashboardItems: DashboardItem[];
   displayName: string;
   id: string;
-  restrictFilters: false;
+  restrictFilters?: false;
   starred: true;
 }
 
@@ -29,10 +29,10 @@ export interface DashboardItem {
   reports: [];
   resources: [];
   type: string;
-  users: [];
+  users?: [];
   visualization?: Visualization;
   text?: string;
-  map: {id: string, name: string}
+  map?: {id: string, name: string}
   shape?: string;
   w: number;
   x: number;

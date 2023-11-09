@@ -2,7 +2,6 @@ import React, { useState, Fragment } from 'react';
 
 import { DashboardListItem, FullItemInfo, DashboardItem } from '../types/apiData'
 
-
 /* @ts-ignore */
 import { Card } from '@dhis2-ui/card'
 import classnames from "classnames"
@@ -16,11 +15,14 @@ interface Props {
 }
 
 const DashboardCard: React.FC<Props> = props => {
-
   const { expanded, itemInfo, expandedDetails, onExpandCardClick, currentFilters } = props;
 
   const [starred, setStarred] = useState<boolean>(localStorage.getItem(itemInfo.id) ? true : false)
   
+  /* I would definitely combine the 2 functions below in one that returns an object with text and icon as keys
+  but ts kept complaining in the render that the object could be undefined etc, and insisted, no matter what I did,
+  so I left it with those 2 functions */
+
   const findItemsRelevantText = (item: DashboardItem) => {
     switch(item.type.toLowerCase()) {
       case "visualization":
@@ -59,25 +61,6 @@ const DashboardCard: React.FC<Props> = props => {
     }
   }
 
-  // const findItemsRelevantText = (item: DashboardItem) => {
-  //   switch(item.type.toLowerCase()) {
-  //     case "visualization":
-  //       if(item.visualization)
-  //       return {text: item.visualization.name}
-  //       break;
-  //     case "map":
-  //       if(item.map)
-  //       return {text: item.map.name}
-  //       break;
-  //     case "text":
-  //       if(item.text)
-  //       return {text: item.text}
-  //       break;
-  //     default: 
-  //     return null
-  //   }
-  // }
-
   const checkIfItemPassesFilters = (item: DashboardItem): boolean => {
     if(currentFilters.length) {
       if(currentFilters.indexOf(item.type.toLowerCase()) === -1)
@@ -109,6 +92,7 @@ const DashboardCard: React.FC<Props> = props => {
             {starred ? "star" : "star_outline"}
           </span>
           <span 
+            data-testid="expand-arrow"
             className={classnames("material-icons", "button-icons", "arrow-icon")} 
             onClick={() => onExpandCardClick(itemInfo.id)}
           >
@@ -137,4 +121,4 @@ const DashboardCard: React.FC<Props> = props => {
   )
 }
 
-export default DashboardCard
+export default React.memo(DashboardCard)

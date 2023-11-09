@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardCard renders the innitial info correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="jsx-574779348 card-container"
+    data-test="dhis2-uicore-card"
+  >
+    <div
+      class="collapsed-card"
+    >
+      <p>
+        Antenatal Care
+      </p>
+      <div
+        class="icons-area"
+      >
+        <span
+          class="material-icons button-icons star-icon"
+        >
+          star_outline
+        </span>
+        <span
+          class="material-icons button-icons arrow-icon"
+          data-testid="expand-arrow"
+        >
+          keyboard_arrow_up
+        </span>
+      </div>
+    </div>
+    <div
+      class="expanded-card"
+    >
+      <div
+        class="dashboard-item-info"
+      >
+        <span
+          class="material-icons"
+        >
+          signal_cellular_alt
+        </span>
+        <span
+          class="dashboard-item-text"
+        >
+          first dashboard item text
+        </span>
+      </div>
+      <hr />
+      <div
+        class="dashboard-item-info"
+      >
+        <span
+          class="material-icons"
+        >
+          public
+        </span>
+        <span
+          class="dashboard-item-text"
+        >
+          second dashboard item text
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

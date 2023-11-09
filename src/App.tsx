@@ -11,7 +11,6 @@ import { MultiSelect, MultiSelectOption } from '@dhis2-ui/select'
 
 
 const App: React.FC<{}> = () => {
-  console.log('app')
   const [dashboardList, setDashboardList] = useState<DashboardListItem[] | null>(null)
   const [expandedCardId, setExpandedCardId] = useState<string | null>(null)
   const [expandedDetailsList, setExpandedDetailsList] = useState<FullItemInfo[]>([])
@@ -30,8 +29,7 @@ const App: React.FC<{}> = () => {
       const responses = await Promise.all(
         dashboardList.map(async item => {
         const res = await getDashboardItemDetails(item.id)
-        /* @ts-ignore */
-        setExpandedDetailsList(prevItems => [...prevItems, res]);
+          setExpandedDetailsList(prevItems => [...prevItems, res]);
         })
       );
     }
@@ -48,19 +46,18 @@ const App: React.FC<{}> = () => {
     }
   }, [dashboardList])
 
-  const handleExpandCardClick = useCallback((id: string) => {
+  const handleExpandCardClick = (id: string) => {
     if (id !== expandedCardId) {
       setExpandedCardId(id)
     }
     else setExpandedCardId(null)
-  }, [expandedCardId ])
-
-  const findExpandedDetailsById = (id: string) => {
-    return expandedDetailsList.find(obj => obj.id === id);
   }
 
+  const findExpandedDetailsById = useCallback((id: string) => {
+    return expandedDetailsList.find(obj => obj.id === id);
+  }, [expandedDetailsList])
+
   const handleFilterClick = (selected: {selected: string[]}) => {
-    /* @ts-ignore */
     const itemIndex = currentItemFilters.indexOf(selected.selected[0])
     if(itemIndex > -1) {
       const newArr = currentItemFilters.filter(item => item !== selected.selected[0])
@@ -83,10 +80,9 @@ const App: React.FC<{}> = () => {
     <div className="App">
       <div className="dashboards-header">
         <h4>Dashboards</h4>
-        <MultiSelect 
+        <MultiSelect
           placeholder={generateTextForFilterPlaceholder()} 
           onChange={(selected: {selected: string[]}) => handleFilterClick(selected)}
-          // selected={currentItemFilters}
           >
           {["Visualization", "Map", "Text"].map((type, i) => (
             <MultiSelectOption value={type.toLowerCase()} label={type} key={i}/>
@@ -109,4 +105,4 @@ const App: React.FC<{}> = () => {
   );
 }
 
-export default App;
+export default React.memo(App);
