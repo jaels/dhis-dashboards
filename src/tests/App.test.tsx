@@ -1,6 +1,6 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
+import AppHeader from '../components/AppHeader'
 
 
 
@@ -12,4 +12,18 @@ describe('App', () => {
           expect (screen.getByText('Filter Items: All Types')).toBeVisible()
     })
 });
+
+describe('App header', () => {
+    it("renders the 2 elements", () => {
+        const props = {
+            handleFilterClick: jest.fn(),
+            currentItemFilters: []
+          }
+
+        render(<AppHeader {...props} />); 
+        
+        expect (screen.getByText("Dashboards")).toBeVisible()
+        expect (screen.getByText('Filter Items: All Types')).toBeVisible()
+    })
+})
 

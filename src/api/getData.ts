@@ -12,7 +12,6 @@ export const getDashboardList = async(): Promise<DashboardListItem[]> => {
 export const getDashboardItemDetails = async(id: string): Promise<FullItemInfo> => {
     const result = await fetch(`${baseUrl}/${id}.json`)
     const data = await result.json()
-    console.log(data)
     return data
 }
 

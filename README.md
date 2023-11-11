@@ -1,46 +1,22 @@
-# Getting Started with Create React App
+## General
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I used Create React App, so you can run it with `npm start`, run tests with `npm test`.
 
-## Available Scripts
+## Should've been added/improved (but time constraints)
 
-In the project directory, you can run:
+- Error handling to the api calls, with an alert bar.
+- The filter - for some reason the selected property of the MultiSelect didn't work well when I placed there the current filters array: not visually - the radio buttons were not marked well, and it also created some error in the filters list. Also the active property in the Select option didn't help in marking the radio buttons, so I didnt use it as well. As a compromise I created the list of chosen filters in the placeholder of the select.
+- An edge case that is not treated - the option to expand a card when there are no items below it due to filtering.
+- Could've written some more tests, for example for the filter functionality.
 
-### `npm start`
+  
+## Assumptions and compromises
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- I used localStorage for the starring, as there is no end point for updating the data.
+- Generally speaking, instead of the constant filters list, it makes more sense to create a dynamic array of unique types from all the dashboard items, but as the treatment of each case could differ (text for example), I anyway need to know exactly what to expect. And also:
+- There was one other dashboard item type that I saw - "messages", but there wasn't any info to display there, so I ignored it.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  
+  
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Hope you like it, enjoy...
