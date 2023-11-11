@@ -1,5 +1,7 @@
 ## General
 
+[This is the link to the deployed version](https://654fbb72ac022f565e9e8f98--dhis-dash.netlify.app)
+
 I used Create React App, so you can run it with `npm start`, run tests with `npm test`.
 
 ## Should've been added/improved (but time constraints)
